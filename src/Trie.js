@@ -8,6 +8,28 @@
  * Często stosuję się referencję do ostatnio szukanej litery by nie przemierzać drzewa od nowa za każdym razem.
  * */
 
+/**
+ *
+ * [
+ *   b: [
+ *     a: [     <- "ba" could be word too
+ *       n: [
+ *         g: []    <- word
+ *         e: [
+ *           r: []  <- word
+ *         ]
+ *         d: []    <- word
+ *       ]
+ *       d: [
+ *         u: [
+ *           m: []  <- word
+ *         ]
+ *       ]
+ *     ]
+ *   ]
+ * ]
+ */
+
 class Node {
     constructor() {
         this.childNodes = new Map();
@@ -43,27 +65,6 @@ class Node {
         return nextNode.getLastNode(letters.slice(1));
     }
 
-    /**
-     *
-     * [
-     *   b: [
-     *     a: [     <- "ba" could be word too
-     *       n: [
-     *         g: []    <- word
-     *         e: [
-     *           r: []  <- word
-     *         ]
-     *         d: []    <- word
-     *       ]
-     *       d: [
-     *         u: [
-     *           m: []  <- word
-     *         ]
-     *       ]
-     *     ]
-     *   ]
-     * ]
-     */
     countWords() {
         if(!this.childNodes.size) {
             return 1;
