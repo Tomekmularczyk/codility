@@ -33,12 +33,12 @@
 class Node {
     constructor() {
         this.childNodes = new Map();
-        this.isComplete = false;
+        this.nrOfWords = 0;
     }
 
     addLetters(letters) {
+        this.nrOfWords += 1;
         if (!letters.length) {
-            this.isComplete = true;
             return;
         }
 
@@ -64,16 +64,6 @@ class Node {
 
         return nextNode.getLastNode(letters.slice(1));
     }
-
-    countWords() {
-        if(!this.childNodes.size) {
-            return 1;
-        }
-
-        let words = this.isComplete ? 1 : 0;
-        this.childNodes.forEach(node => words += node.countWords());
-        return words;
-    }
 }
 
 class Trie {
@@ -93,7 +83,7 @@ class Trie {
     countNumberOfWordsThatStartsWith(phrase) {
         const letters = phrase.split('');
         const node = this.root.getLastNode(letters);
-        return node ? node.countWords() : 0;
+        return node ? node.nrOfWords : 0;
     }
 
 }
