@@ -1,5 +1,7 @@
 /**
  * Queue is a data structure based on FIFO
+ *
+ * It is important to note that in JavaScript we can easly implement Stack with arrays and `shift` and `unshift` methods
  */
 
 class Node {

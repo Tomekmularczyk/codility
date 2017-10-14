@@ -1,5 +1,7 @@
 /**
  * Stack is a data structure based on LIFO
+ *
+ * It is important to note that in JavaScript we can easly implement Stack with arrays and `push` and `pop` methods
  */
 
 
@@ -11,16 +13,17 @@ class Node {
 }
 
 class Stack {
-    constructor(){
+    constructor() {
         this.top = null;
+        this.size = 0;
     }
 
     isEmpty() {
-        return !this.top;
+        return !this.top && this.size === 0;
     }
 
     peek() {
-        if(this.top){
+        if (this.top) {
             return this.top.data;
         }
 
@@ -31,34 +34,19 @@ class Stack {
         const node = new Node(data);
         node.next = this.top;
         this.top = node;
+        this.size += 1;
     }
 
     pop() {
-        if(!this.top) {
+        if (!this.top) {
             return null;
         }
 
         const data = this.top.data;
         this.top = this.top.next;
+        this.size -= 1;
         return data;
     }
 }
 
-function test() {
-    const stack = new Stack();
-    stack.push('dzis');
-    stack.push('w');
-    stack.push('klubie');
-    stack.push('bedzie');
-    stack.push('bang');
-
-    console.log(stack.pop());
-    console.log(stack.pop());
-    console.log(stack.pop());
-    console.log(stack.pop());
-    console.log(stack.pop());
-    console.log(stack.pop());
-    console.log(stack.pop());
-}
-
-test();
+module.exports.Stack = Stack;
