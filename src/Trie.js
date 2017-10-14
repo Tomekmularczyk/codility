@@ -9,9 +9,8 @@
  * */
 
 class Node {
-    constructor(letter) {
-        this.letter = letter;
-        this.childNodes = [];
+    constructor() {
+        this.childNodes = new Map();
         this.isComplete = false;
     }
 
@@ -21,21 +20,14 @@ class Node {
             return;
         }
 
-        const existingNode = this.getNode(letters[0]);
+        const existingNode = this.childNodes.get(letters[0]);
         if (existingNode) {
             existingNode.addLetters(letters.slice(1));
         } else {
-            const newNode = new Node(letters[0]);
-            this.childNodes.push(newNode);
+            const newNode = new Node();
+            this.childNodes.set(letters[0], newNode);
             newNode.addLetters(letters.slice(1));
         }
-    }
-
-    getNode(letter) {
-        if (!this.childNodes.length) {
-            return;
-        }
-        return this.childNodes.find(node => node.letter === letter);
     }
 
     getLastNode(letters) {
@@ -43,7 +35,7 @@ class Node {
             return this;
         }
 
-        const nextNode = this.childNodes.find(node => node.letter === letters[0]);
+        const nextNode = this.childNodes.get(letters[0]);
         if (!nextNode) {
             return null;
         }
@@ -73,18 +65,19 @@ class Node {
      * ]
      */
     countWords() {
-        if(!this.childNodes.length) {
+        if(!this.childNodes.size) {
             return 1;
         }
 
-        const thisNodeCount = this.isComplete ? 1 : 0;
-        return thisNodeCount + this.childNodes.reduce((prev, curr) => prev + curr.countWords(), 0);
+        let words = this.isComplete ? 1 : 0;
+        this.childNodes.forEach(node => words += node.countWords());
+        return words;
     }
 }
 
 class Trie {
     constructor() {
-        this.root = new Node(null);
+        this.root = new Node();
     }
 
     addWord(word) {
