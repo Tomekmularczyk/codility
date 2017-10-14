@@ -13,14 +13,15 @@ class Queue {
     constructor() {
         this.head = null;
         this.tail = null;
+        this.size = 0;
     }
 
     isEmpty() {
-        return !this.head;
+        return !this.head && this.size === 0;
     }
 
     peek() {
-        if(this.head) {
+        if (this.head) {
             return this.head.data;
         }
 
@@ -30,13 +31,14 @@ class Queue {
     // -- add tail
     add(data) {
         const node = new Node(data);
-        if(this.tail){
+        if (this.tail) {
             this.tail.next = node;
         }
         this.tail = node;
         if (!this.head) {
             this.head = node;
         }
+        this.size += 1;
     }
 
     remove() {
@@ -46,25 +48,9 @@ class Queue {
         }
         const data = this.head.data;
         this.head = this.head.next;
+        this.size -= 1;
         return data;
     }
 }
 
-function test() {
-    const que = new Queue();
-    que.add('dzis');
-    que.add('w');
-    que.add('klubie');
-    que.add('bedzie');
-    que.add('bang');
-
-    console.log(que.remove());
-    console.log(que.remove());
-    console.log(que.remove());
-    console.log(que.remove());
-    console.log(que.remove());
-    console.log(que.remove());
-    console.log(que.remove());
-}
-
-test();
+module.exports.Queue = Queue;
