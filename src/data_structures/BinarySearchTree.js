@@ -11,6 +11,11 @@
  * Dzięki takiemu wstawianiu elementów, możemy bardzo szybko wstawiać i przeszukiwać drzewa binarne - O(log N).
  * Wszystko pod warunkiem, że dane są losowe i drzewo jest zbalansowane tzn. jest podobna ilość gałązek po lewej jak i po prawej stronie,
  * w przeciwnym wypadku korzyści nie są lepsze od zwykłej listy.
+ *
+ * Usuwanie z BST ma pewne założenia.
+ * Jeżeli liść nie ma dzieci, to wystarczy że usuniemy jego referencję w rodzicu.
+ * Jeżeli liść ma tylko lewą, albo prawdą głąź, wystarczy, że zalinkujemy rodzica z tą lewą albo prawą gałązką.
+ * ... it's fucked up.
  */
 
 class Node {

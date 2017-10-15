@@ -1,4 +1,4 @@
-const Queue = require('../src/Queue').Queue;
+const Queue = require('../../src/data_structures/Queue').Queue;
 
 const emptyQueue = new Queue();
 let queue;
