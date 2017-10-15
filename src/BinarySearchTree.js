@@ -20,6 +20,36 @@ class Node {
         this.leftNode = null;
         this.rightNode = null;
     }
+
+    addNode(value, data) {
+        if (value < this.value) {
+            if (!this.leftNode) {
+                this.leftNode = new Node(value, data);
+                return;
+            }
+
+            this.leftNode.addNode(value, data);
+        } else {
+            if (!this.rightNode) {
+                this.rightNode = new Node(value, data);
+                return;
+            }
+
+            this.rightNode.addNode(value, data);
+        }
+    }
+
+    getNode(value) {
+        if (this.value === value) {
+            return this;
+        }
+
+        if (value < this.value) {
+            return this.leftNode.getNode(value);
+        } else {
+            return this.rightNode.getNode(value);
+        }
+    }
 }
 
 class BinarySearchTree {
@@ -33,31 +63,17 @@ class BinarySearchTree {
             return;
         }
 
-        if (value < this.root.value) {
-            if (!this.root.leftNode) {
-                this.root.leftNode = new Node(value, data);
-                return;
-            }
-
-            this.root.leftNode.addNode(value, data);
-        } else {
-            if (!this.root.rightNode) {
-                this.root.rightNode = new Node(value, data);
-                return;
-            }
-
-            this.root.rightNode.addNode(value, data);
-        }
+        this.root.addNode(value, data);
     }
 
     getNode(value) {
-        if (this.root) {
-            if (value < this.root.value) {
-                return this.root.leftNode.getNode(value);
-            } else {
-                return this.root.rightNode.getNode(value);
-            }
+        if (!this.root) {
+            return;
         }
+
+        return this.root.getNode(value);
     }
 
 }
+
+module.exports.BinarySearchTree = BinarySearchTree;
