@@ -50,6 +50,52 @@ class Node {
             return this.rightNode.getNode(value);
         }
     }
+
+    /**
+     * Od najmniejszego do największego - Left -> Root -> Right
+     */
+    getNodesInOrder(arr) {
+        if (this.leftNode) {
+            this.leftNode.getNodesInOrder(arr);
+        }
+        arr.push(this);
+        if (this.rightNode) {
+            this.rightNode.getNodesInOrder(arr);
+        }
+
+        return arr;
+    }
+
+    /**
+     * Od lewej do prawej od góry do dołu - Root -> Left -> Right
+     */
+    getNodesInPreOrder(arr) {
+        arr.push(this);
+
+        if (this.leftNode) {
+            this.leftNode.getNodesInPreOrder(arr);
+        }
+        if (this.rightNode) {
+            this.rightNode.getNodesInPreOrder(arr);
+        }
+
+        return arr;
+    }
+
+    /**
+     * Od lewej do prawej i od dołu do góry. Left -> Right -> Root
+     */
+    getNodesInPostOrder(arr) {
+        if (this.leftNode) {
+            this.leftNode.getNodesInPostOrder(arr);
+        }
+        if (this.rightNode) {
+            this.rightNode.getNodesInPostOrder(arr);
+        }
+        arr.push(this);
+
+        return arr;
+    }
 }
 
 class BinarySearchTree {
@@ -76,6 +122,18 @@ class BinarySearchTree {
 
     getRoot() {
         return this.root;
+    }
+
+    getNodesInOrder() {
+        return this.root.getNodesInOrder([]);
+    }
+
+    getNodesInPreOrder() {
+        return this.root.getNodesInPreOrder([]);
+    }
+
+    getNodesInPostOrder() {
+        return this.root.getNodesInPostOrder([]);
     }
 }
 
