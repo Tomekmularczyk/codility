@@ -74,6 +74,9 @@ class BinarySearchTree {
         return this.root.getNode(value);
     }
 
+    getRoot() {
+        return this.root;
+    }
 }
 
 module.exports.BinarySearchTree = BinarySearchTree;

@@ -20,3 +20,14 @@ it('returns the node', () => {
     expect(binaryTree.getNode(10)).toHaveProperty('data', "Kasia");
     expect(binaryTree.getNode(1)).toHaveProperty('data', "Joasia");
 });
+
+it('adds the new nodes in correct places', () => {
+    const root = binaryTree.getRoot();
+    expect(root.value).toEqual(10);
+    expect(root.leftNode.value).toEqual(1);
+    expect(root.leftNode.rightNode.value).toEqual(7);
+    expect(root.leftNode.rightNode.leftNode.value).toEqual(2);
+
+    expect(root.rightNode.value).toEqual(12);
+    expect(root.rightNode.rightNode.value).toEqual(16);
+});
