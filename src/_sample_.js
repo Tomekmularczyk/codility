@@ -22,17 +22,6 @@ expected worst-case space complexity is O(N), beyond input storage (not counting
 Elements of input arrays can be modified.
 */
 
-/*
-0. Sort array
-1. start with index 0
-2. check if next item has value of arr[i]+1 === arr[i+1]
-   a) TAK - wróć do kroku 2
-   b) nie - zwróć wartość
-3. jeżeli w pętlia nie zwróciła niczego, zwróć arr[arr.length] + 1;
-4.
-
-*/
-
 function sort(array) {
     return array.sort((a, b) => (a - b));
 }
@@ -58,32 +47,3 @@ function solution(A) {
     }
     return returnValue < 1 ? 1 : returnValue;
 }
-
-// function solution2(arr) {
-//     // write your code in JavaScript (Node.js 6.4.0)
-//     let min = Math.min.apply(Math, arr);
-//     let max = Math.max.apply(Math, arr);
-//
-//     for (let i = 0; i < arr.length; i++) {
-//         if (arr.indexOf(min + 1) === -1) {
-//             if (min + i > 0) {
-//                 return min + 1;
-//             }
-//         }
-//     }
-//
-//     let returnValue = max + 1;
-//
-//     if (returnValue > 100000) {
-//         returnValue = min - 1;
-//     }
-//
-//     if (returnValue < 0) {
-//         returnValue = 1;
-//     }
-//
-//     return returnValue;
-// }
-
-module.exports.sort = sort;
-module.exports.solution = solution;
