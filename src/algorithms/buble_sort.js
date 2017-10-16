@@ -18,7 +18,7 @@ function basicBubbleSort(arr) {
 /**
  * Możemy zastosować 2 optymalizacje:
  *
- * 1. Jeżeli nie było żadnej zamiany elementów w iteracji to znaczy, że tablica jest posortowana. Możemy to sprawdzić za pomocą flagi.
+ * 1. Jeżeli nie było żadnej zamiany elementów w iteracji to znaczy, że tablica jest posortowana. Możemy to sprawdzić.
  * 2. Przy N iteracji przez tablice N elementów od końca jest już posortowanych. Przy kolejnych iteracjach możemy je pominąć.
  */
 function optimizedBubbleSort(arr) {
@@ -28,14 +28,17 @@ function optimizedBubbleSort(arr) {
         arr[index2] = index1_oldValue;
     }
 
-    let isSorted = false;
-    while (!isSorted) {
-        isSorted = true;
-        for (let i = 0; i < (arr.length - 1) - i; i++) {
-            if (arr[i] > arr[i + 1]) {
+    for (let i = 0; i < arr.length - 1; i++) {
+        let swapCount = 0;
+        for (let j = 0; j < arr.length - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
                 swapItems(arr, i, i + 1);
-                isSorted = false;
+                swapCount += 1;
             }
+        }
+
+        if (swapCount === 0) {
+            break;
         }
     }
 }
