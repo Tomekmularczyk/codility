@@ -1,6 +1,8 @@
 /**
  * Quicksort stosuje regułe dziel i zwyciężaj.
- * Po każdym przejsciu loopa,
+ * Po każdym przejsciu loopa, dzieli się tablice na dwie i rekursywnie wykonuje sort.
+ * Kluczem jest tu pivot point (najczęściej ostatni element z tablicy), do którego bedziemy porównywać inne elementy w loopie
+ * quick sort daje dobrą złożoność O(log N)
  * @param arr
  * @param index1
  * @param index2
