@@ -12,7 +12,7 @@ it('finds mean', () => {
     const meanArr1 = findMean(arr1);
     const meanEmptyArr = findMean(emptyArr);
 
-    expect(meanArr1).toEqual(43900.6);
+    expect(meanArr1).toBeCloseTo(43900.6, 1);
     expect(meanEmptyArr).toBeFalsy();
 });
 
@@ -20,7 +20,7 @@ it('finds median', () => {
     const medianArr1 = findMedian(arr1);
     const medianEmptyArr = findMedian(emptyArr);
 
-    expect(medianArr1).toEqual(44627.5);
+    expect(medianArr1).toBeCloseTo(44627.5, 1);
     expect(medianEmptyArr).toBeFalsy();
 });
 

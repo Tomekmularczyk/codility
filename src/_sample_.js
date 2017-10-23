@@ -1,30 +1,23 @@
-const a = [3, 2, 1];
-const n = 3;
-
-let totalNumberOfSwaps = 0;
-function swap(arr, index1, index2) {
-    const index1_oldValue = arr[index1];
-    arr[index1] = arr[index2];
-    arr[index2] = index1_oldValue;
-    totalNumberOfSwaps++;
-}
-
-for (let i = 0; i < n; i++) {
-    // Track number of elements swapped during a single array traversal
-    let numberOfSwaps = 0;
-
-    for (let j = 0; j < n - 1; j++) {
-        // Swap adjacent elements if they are in decreasing order
-        if (a[j] > a[j + 1]) {
-            swap(a[j], a[j + 1]);
-            numberOfSwaps++;
-        }
+function makeChange(coins, money, index) {
+    if (money === 0) {
+        return 1;
     }
 
-    // If no elements were swapped during a traversal, array is sorted
-    if (numberOfSwaps === 0) {
-        break;
+    if (index >= coins.length) {
+        return 0;
     }
+
+    let amountWithCoin = 0;
+    let nrOfWays = 0;
+    while (amountWithCoin <= money) {
+        let remaining = money - amountWithCoin;
+        nrOfWays += makeChange(coins, remaining, index + 1);
+        amountWithCoin += coins[index];
+    }
+
+    return nrOfWays;
 }
 
-console.log(totalNumberOfSwaps);
+function solution(coins, money) {
+    return makeChange(coins, money, 0);
+}
