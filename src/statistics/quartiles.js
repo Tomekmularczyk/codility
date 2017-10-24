@@ -5,7 +5,7 @@
 
 function findQuartiles(arr) {
     arr.sort((a, b) => a - b);
-    const result = [findMedian(arr)];
+    const result = [findMedian(arr)]; // fill with q2
 
     const [leftPart, rightPart] = splitArrayOnTwoEqualHalfs(arr);
     result.unshift(findMedian(leftPart));
