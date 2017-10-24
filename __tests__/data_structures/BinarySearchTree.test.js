@@ -57,3 +57,8 @@ it('return nodes in post-order', () => {
     const nodesInOrder = binaryTree.getNodesInPostOrder();
     expect(nodesInOrder.map(item => item.value)).toEqual([0, 2, 4, 6, 5, 3, 1, 8, 10, 9, 7]);
 });
+
+it('returns tree height', () => {
+    expect(emptyTree.getHeight()).toBe(0);
+    expect(binaryTree.getHeight()).toBe(4);
+});

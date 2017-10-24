@@ -57,6 +57,16 @@ class Node {
     }
 
     /**
+     * Wysokość to liść który jest najniżej położony
+     */
+    getHeight(root) {
+        if (!root) {
+            return -1;
+        }
+        return 1 + Math.max(this.getHeight(root.leftNode), this.getHeight(root.rightNode));
+    }
+
+    /**
      * Od najmniejszego do największego - Left -> Root -> Right
      */
     getNodesInOrder(arr) {
@@ -127,6 +137,14 @@ class BinarySearchTree {
 
     getRoot() {
         return this.root;
+    }
+
+    getHeight() {
+        if (!this.root) {
+            return 0;
+        }
+
+        return this.root.getHeight(this.root);
     }
 
     getNodesInOrder() {
