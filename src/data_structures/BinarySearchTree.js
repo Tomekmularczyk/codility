@@ -26,21 +26,21 @@ class Node {
         this.rightNode = null;
     }
 
-    addNode(value, data) {
+    insert(value, data) {
         if (value < this.value) {
             if (!this.leftNode) {
                 this.leftNode = new Node(value, data);
                 return;
             }
 
-            this.leftNode.addNode(value, data);
+            this.leftNode.insert(value, data);
         } else {
             if (!this.rightNode) {
                 this.rightNode = new Node(value, data);
                 return;
             }
 
-            this.rightNode.addNode(value, data);
+            this.rightNode.insert(value, data);
         }
     }
 
@@ -111,6 +111,28 @@ class Node {
 
         return arr;
     }
+
+    /* zig-zag traversal */
+    getNodesInLevelOrderTraversal() {
+        const queue = [this];
+        const result = [];
+
+        while (queue.length) {
+            const current = queue.shift();
+            result.push(current.value);
+
+            if (current.leftNode) {
+                queue.push(current.leftNode);
+            }
+
+            if (current.rightNode) {
+                queue.push(current.rightNode);
+            }
+        }
+
+
+        return result;
+    }
 }
 
 class BinarySearchTree {
@@ -118,13 +140,13 @@ class BinarySearchTree {
         this.root = null;
     };
 
-    addNode(value, data) {
+    insert(value, data) {
         if (!this.root) {
             this.root = new Node(value, data);
             return;
         }
 
-        this.root.addNode(value, data);
+        this.root.insert(value, data);
     }
 
     getNode(value) {
@@ -157,6 +179,10 @@ class BinarySearchTree {
 
     getNodesInPostOrder() {
         return this.root.getNodesInPostOrder([]);
+    }
+
+    getNodesInLevelOrderTraversal() {
+        return this.root.getNodesInLevelOrderTraversal();
     }
 }
 
