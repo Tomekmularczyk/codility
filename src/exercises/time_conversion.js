@@ -1,7 +1,7 @@
 function splitTime(time) {
     let [hours, minutes, seconds] = time.split(':');
     seconds = seconds.split('');
-    anteMeridiem = seconds.slice(2).join('');
+    const anteMeridiem = seconds.slice(2).join('');
     seconds = seconds.slice(0, 2).join('');
     return {
         hours: parseInt(hours, 10),
