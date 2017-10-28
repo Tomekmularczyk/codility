@@ -21,8 +21,6 @@ function toString(hours, minutes, seconds) {
 function timeConversion(time) {
     const parts = splitTime(time);
 
-    console.log(parts);
-
     let hours = parts.hours;
     if(parts.anteMeridiem === 'PM') {
         if(hours < 12) {
