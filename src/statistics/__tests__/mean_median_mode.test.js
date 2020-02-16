@@ -1,8 +1,4 @@
-const {
-  findMean,
-  findMedian,
-  findMode
-} = require("../../src/statistics/mean_median_mode");
+const { findMean, findMedian, findMode } = require("../mean_median_mode");
 
 const emptyArr = [];
 let arr1;

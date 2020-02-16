@@ -1,4 +1,4 @@
-const { isPrime } = require("../../src/exercises/is_prime");
+const { isPrime } = require("../is_prime");
 
 it("checks if its prime", () => {
   expect(isPrime(1)).toBe(false);

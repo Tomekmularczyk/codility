@@ -1,4 +1,4 @@
-const { weightedMean } = require("../../src/statistics/weighted_mean");
+const { weightedMean } = require("../weighted_mean");
 
 it("correctly counts weighted mean", () => {
   const elems1 = [10, 40, 30, 50, 20];

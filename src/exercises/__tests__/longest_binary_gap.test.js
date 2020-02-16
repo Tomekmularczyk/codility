@@ -1,4 +1,4 @@
-const { longestBinaryGap } = require("../../src/exercises/longest_binary_gap");
+const { longestBinaryGap } = require("../longest_binary_gap");
 
 it("finds the longest binary gap", () => {
   expect(longestBinaryGap("")).toBe(0);

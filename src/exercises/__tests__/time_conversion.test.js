@@ -1,4 +1,4 @@
-const { timeConversion } = require("../../src/exercises/time_conversion");
+const { timeConversion } = require("../time_conversion");
 
 it("properly converts", () => {
   const time1 = "01:25:00AM";

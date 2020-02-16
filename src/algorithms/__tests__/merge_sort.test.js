@@ -1,4 +1,4 @@
-const { mergeArrays, mergeSort } = require("../../src/algorithms/merge_sort");
+const { mergeArrays, mergeSort } = require("../merge_sort");
 
 it("merges sorted arrays correctly", () => {
   const leftA1 = [3, 6, 8, 9];

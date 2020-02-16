@@ -1,5 +1,4 @@
-const BinarySearchTree = require("../../src/data_structures/BinarySearchTree")
-  .BinarySearchTree;
+const BinarySearchTree = require("../BinarySearchTree").BinarySearchTree;
 
 let emptyTree;
 let binaryTree;

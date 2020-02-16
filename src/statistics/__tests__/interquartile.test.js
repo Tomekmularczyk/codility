@@ -1,4 +1,4 @@
-const { getInterquartile } = require("../../src/statistics/interquartile");
+const { getInterquartile } = require("../interquartile");
 
 it("counts interquartile", () => {
   const arr = [

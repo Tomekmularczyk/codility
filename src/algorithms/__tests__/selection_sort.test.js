@@ -1,4 +1,4 @@
-const { selectionSort } = require("../../src/algorithms/selection_sort");
+const { selectionSort } = require("../selection_sort");
 
 it("sorts elements", () => {
   const arr1 = [];

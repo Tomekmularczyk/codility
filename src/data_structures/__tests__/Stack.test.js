@@ -1,4 +1,4 @@
-const Stack = require("../../src/data_structures/Stack").Stack;
+const Stack = require("../Stack").Stack;
 
 const emptyStack = new Stack();
 let stack;

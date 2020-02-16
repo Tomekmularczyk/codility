@@ -1,6 +1,4 @@
-const {
-  countStandardDeviation
-} = require("../../src/statistics/standart_deviation");
+const { countStandardDeviation } = require("../standart_deviation");
 
 it("counts standard devaition", () => {
   const arr = [10, 40, 30, 50, 20];

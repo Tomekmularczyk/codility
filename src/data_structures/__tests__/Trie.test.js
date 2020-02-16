@@ -1,4 +1,4 @@
-const Trie = require("../../src/data_structures/Trie").Trie;
+const Trie = require("../Trie").Trie;
 
 let trie;
 

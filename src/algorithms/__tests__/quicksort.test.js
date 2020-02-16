@@ -1,4 +1,4 @@
-const { quickSort } = require("../../src/algorithms/quicksort");
+const { quickSort } = require("../quicksort");
 
 const emptyArray = [];
 let unsortedArray1;

@@ -1,6 +1,4 @@
-const {
-  diagonalDifference
-} = require("../../src/exercises/diagonal_difference");
+const { diagonalDifference } = require("../diagonal_difference");
 
 it("counts diagonal difference", () => {
   const emptyMatrix = [];

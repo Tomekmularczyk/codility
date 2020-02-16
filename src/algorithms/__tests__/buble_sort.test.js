@@ -1,7 +1,5 @@
-const basicBubleSort = require("../../src/algorithms/buble_sort")
-  .basicBubbleSort;
-const optimizedBubleSort = require("../../src/algorithms/buble_sort")
-  .optimizedBubbleSort;
+const basicBubleSort = require("../buble_sort").basicBubbleSort;
+const optimizedBubleSort = require("../buble_sort").optimizedBubbleSort;
 
 let arr1;
 let arr2;
