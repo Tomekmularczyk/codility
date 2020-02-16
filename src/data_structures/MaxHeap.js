@@ -94,3 +94,5 @@ class MaxHeap {
     return parentIndex * 2 + 2;
   }
 }
+
+module.exports.MaxHeap = MaxHeap;

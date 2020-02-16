@@ -1,6 +1,5 @@
 const MinHeap = require("../../src/data_structures/MinHeap").MinHeap;
 
-const emptyHeap = new MinHeap();
 const heap = new MinHeap();
 beforeAll(() => {
   heap.add(1);

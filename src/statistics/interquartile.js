@@ -34,15 +34,4 @@ function splitArray(arr) {
   return [leftPart, rightPart];
 }
 
-function mapElements(X, F) {
-  const result = [];
-  for (let i = 0; i < X.length; i++) {
-    for (let j = 0; j < F[i]; j++) {
-      result.push(X[i]);
-    }
-  }
-
-  return result;
-}
-
 module.exports.getInterquartile = getInterquartile;
