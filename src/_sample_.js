@@ -16,36 +16,35 @@
 4. prevCharacter = binary[i]
 */
 
-
 function longestBinary(binary) {
-    binary = binary.split('');
-    if(binary.length < 3) return 0;
+  binary = binary.split("");
+  if (binary.length < 3) return 0;
 
-    let prevCharacter = binary[0];
-    let currentCount = 0;
-    let maxCount = 0;
-    let isInGap = false;
-    for(let i = 1; i < binary.length; i++) {
-        if(binary[i] === '0') {
-            if(isInGap) {
-                currentCount += 1;
-            } else {
-                if(prevCharacter === '1') {
-                    isInGap = true;
-                    currentCount = 1;
-                }
-            }
-        } else {
-            if(isInGap) {
-                isInGap = false;
-                maxCount = currentCount > maxCount ? currentCount : maxCount;
-                currentCount = 0;
-            }
+  let prevCharacter = binary[0];
+  let currentCount = 0;
+  let maxCount = 0;
+  let isInGap = false;
+  for (let i = 1; i < binary.length; i++) {
+    if (binary[i] === "0") {
+      if (isInGap) {
+        currentCount += 1;
+      } else {
+        if (prevCharacter === "1") {
+          isInGap = true;
+          currentCount = 1;
         }
-        prevCharacter = binary[i];
+      }
+    } else {
+      if (isInGap) {
+        isInGap = false;
+        maxCount = currentCount > maxCount ? currentCount : maxCount;
+        currentCount = 0;
+      }
     }
+    prevCharacter = binary[i];
+  }
 
-    return maxCount;
+  return maxCount;
 }
 
 module.exports.longestBinaryGap = longestBinary;

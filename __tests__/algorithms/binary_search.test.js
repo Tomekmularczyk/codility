@@ -1,6 +1,6 @@
-const { binarySearch } = require('../../src/algorithms/binary_search');
+const { binarySearch } = require("../../src/algorithms/binary_search");
 
-it('searches in sorted array', () => {
+it("searches in sorted array", () => {
   const arr1 = [1, 2, 3, 4, 5, 6];
   const arr2 = [1];
   const arr3 = [1, 3, 4, 6];

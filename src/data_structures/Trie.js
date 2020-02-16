@@ -31,61 +31,60 @@
  */
 
 class Node {
-    constructor() {
-        this.childNodes = new Map();
-        this.nrOfWords = 0;
+  constructor() {
+    this.childNodes = new Map();
+    this.nrOfWords = 0;
+  }
+
+  addLetters(letters) {
+    this.nrOfWords += 1;
+    if (!letters.length) {
+      return;
     }
 
-    addLetters(letters) {
-        this.nrOfWords += 1;
-        if (!letters.length) {
-            return;
-        }
+    const existingNode = this.childNodes.get(letters[0]);
+    if (existingNode) {
+      existingNode.addLetters(letters.slice(1));
+    } else {
+      const newNode = new Node();
+      this.childNodes.set(letters[0], newNode);
+      newNode.addLetters(letters.slice(1));
+    }
+  }
 
-        const existingNode = this.childNodes.get(letters[0]);
-        if (existingNode) {
-            existingNode.addLetters(letters.slice(1));
-        } else {
-            const newNode = new Node();
-            this.childNodes.set(letters[0], newNode);
-            newNode.addLetters(letters.slice(1));
-        }
+  getLastNode(letters) {
+    if (!letters.length) {
+      return this;
     }
 
-    getLastNode(letters) {
-        if (!letters.length) {
-            return this;
-        }
-
-        const nextNode = this.childNodes.get(letters[0]);
-        if (!nextNode) {
-            return null;
-        }
-
-        return nextNode.getLastNode(letters.slice(1));
+    const nextNode = this.childNodes.get(letters[0]);
+    if (!nextNode) {
+      return null;
     }
+
+    return nextNode.getLastNode(letters.slice(1));
+  }
 }
 
 class Trie {
-    constructor() {
-        this.root = new Node();
-    }
+  constructor() {
+    this.root = new Node();
+  }
 
-    addWord(word) {
-        this.root.addLetters(word.split(''));
-    }
+  addWord(word) {
+    this.root.addLetters(word.split(""));
+  }
 
-    hasWord(word) {
-        const letters = word.split('');
-        return !!this.root.getLastNode(letters);
-    }
+  hasWord(word) {
+    const letters = word.split("");
+    return !!this.root.getLastNode(letters);
+  }
 
-    countNumberOfWordsThatStartsWith(phrase) {
-        const letters = phrase.split('');
-        const node = this.root.getLastNode(letters);
-        return node ? node.nrOfWords : 0;
-    }
-
+  countNumberOfWordsThatStartsWith(phrase) {
+    const letters = phrase.split("");
+    const node = this.root.getLastNode(letters);
+    return node ? node.nrOfWords : 0;
+  }
 }
 
 module.exports.Trie = Trie;

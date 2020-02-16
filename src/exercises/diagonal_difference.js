@@ -12,23 +12,21 @@
  return absolute value
  **/
 
-
 function diagonalDifference(matrix) {
-    if (!matrix.length) {
-        return 0;
-    }
+  if (!matrix.length) {
+    return 0;
+  }
 
-    const leftDiagonal = [];
-    const rightDiagonal = [];
-    for (let i = 0, j = matrix.length - 1; i < matrix.length; i++, j--) {
-        leftDiagonal.push(matrix[i][i]);
-        rightDiagonal.push(matrix[i][j]);
-    }
+  const leftDiagonal = [];
+  const rightDiagonal = [];
+  for (let i = 0, j = matrix.length - 1; i < matrix.length; i++, j--) {
+    leftDiagonal.push(matrix[i][i]);
+    rightDiagonal.push(matrix[i][j]);
+  }
 
-    const leftSum = leftDiagonal.reduce((a, b) => a + b);
-    const rightSum = rightDiagonal.reduce((a, b) => a + b);
-    return Math.abs(leftSum - rightSum);
+  const leftSum = leftDiagonal.reduce((a, b) => a + b);
+  const rightSum = rightDiagonal.reduce((a, b) => a + b);
+  return Math.abs(leftSum - rightSum);
 }
-
 
 module.exports.diagonalDifference = diagonalDifference;

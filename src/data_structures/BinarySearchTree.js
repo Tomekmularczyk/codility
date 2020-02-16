@@ -19,171 +19,173 @@
  */
 
 class Node {
-    constructor(value, data) {
-        this.value = value;
-        this.data = data;
-        this.leftNode = null;
-        this.rightNode = null;
+  constructor(value, data) {
+    this.value = value;
+    this.data = data;
+    this.leftNode = null;
+    this.rightNode = null;
+  }
+
+  insert(value, data) {
+    if (value < this.value) {
+      if (!this.leftNode) {
+        this.leftNode = new Node(value, data);
+        return;
+      }
+
+      this.leftNode.insert(value, data);
+    } else {
+      if (!this.rightNode) {
+        this.rightNode = new Node(value, data);
+        return;
+      }
+
+      this.rightNode.insert(value, data);
+    }
+  }
+
+  getNode(value) {
+    if (this.value === value) {
+      return this;
     }
 
-    insert(value, data) {
-        if (value < this.value) {
-            if (!this.leftNode) {
-                this.leftNode = new Node(value, data);
-                return;
-            }
+    if (value < this.value) {
+      return this.leftNode.getNode(value);
+    } else {
+      return this.rightNode.getNode(value);
+    }
+  }
 
-            this.leftNode.insert(value, data);
-        } else {
-            if (!this.rightNode) {
-                this.rightNode = new Node(value, data);
-                return;
-            }
+  /**
+   * Wysokość to liść który jest najniżej położony
+   */
+  getHeight(root) {
+    if (!root) {
+      return -1;
+    }
+    return (
+      1 +
+      Math.max(this.getHeight(root.leftNode), this.getHeight(root.rightNode))
+    );
+  }
 
-            this.rightNode.insert(value, data);
-        }
+  /**
+   * Od najmniejszego do największego - Left -> Root -> Right
+   */
+  getNodesInOrder(arr) {
+    if (this.leftNode) {
+      this.leftNode.getNodesInOrder(arr);
+    }
+    arr.push(this);
+    if (this.rightNode) {
+      this.rightNode.getNodesInOrder(arr);
     }
 
-    getNode(value) {
-        if (this.value === value) {
-            return this;
-        }
+    return arr;
+  }
 
-        if (value < this.value) {
-            return this.leftNode.getNode(value);
-        } else {
-            return this.rightNode.getNode(value);
-        }
+  /**
+   * Od lewej do prawej od góry do dołu - Root -> Left -> Right
+   */
+  getNodesInPreOrder(arr) {
+    arr.push(this);
+
+    if (this.leftNode) {
+      this.leftNode.getNodesInPreOrder(arr);
+    }
+    if (this.rightNode) {
+      this.rightNode.getNodesInPreOrder(arr);
     }
 
-    /**
-     * Wysokość to liść który jest najniżej położony
-     */
-    getHeight(root) {
-        if (!root) {
-            return -1;
-        }
-        return 1 + Math.max(this.getHeight(root.leftNode), this.getHeight(root.rightNode));
+    return arr;
+  }
+
+  /**
+   * Od lewej do prawej i od dołu do góry. Left -> Right -> Root
+   */
+  getNodesInPostOrder(arr) {
+    if (this.leftNode) {
+      this.leftNode.getNodesInPostOrder(arr);
+    }
+    if (this.rightNode) {
+      this.rightNode.getNodesInPostOrder(arr);
+    }
+    arr.push(this);
+
+    return arr;
+  }
+
+  /* zig-zag traversal */
+  getNodesInLevelOrderTraversal() {
+    const queue = [this];
+    const result = [];
+
+    while (queue.length) {
+      const current = queue.shift();
+      result.push(current.value);
+
+      if (current.leftNode) {
+        queue.push(current.leftNode);
+      }
+
+      if (current.rightNode) {
+        queue.push(current.rightNode);
+      }
     }
 
-    /**
-     * Od najmniejszego do największego - Left -> Root -> Right
-     */
-    getNodesInOrder(arr) {
-        if (this.leftNode) {
-            this.leftNode.getNodesInOrder(arr);
-        }
-        arr.push(this);
-        if (this.rightNode) {
-            this.rightNode.getNodesInOrder(arr);
-        }
-
-        return arr;
-    }
-
-    /**
-     * Od lewej do prawej od góry do dołu - Root -> Left -> Right
-     */
-    getNodesInPreOrder(arr) {
-        arr.push(this);
-
-        if (this.leftNode) {
-            this.leftNode.getNodesInPreOrder(arr);
-        }
-        if (this.rightNode) {
-            this.rightNode.getNodesInPreOrder(arr);
-        }
-
-        return arr;
-    }
-
-    /**
-     * Od lewej do prawej i od dołu do góry. Left -> Right -> Root
-     */
-    getNodesInPostOrder(arr) {
-        if (this.leftNode) {
-            this.leftNode.getNodesInPostOrder(arr);
-        }
-        if (this.rightNode) {
-            this.rightNode.getNodesInPostOrder(arr);
-        }
-        arr.push(this);
-
-        return arr;
-    }
-
-    /* zig-zag traversal */
-    getNodesInLevelOrderTraversal() {
-        const queue = [this];
-        const result = [];
-
-        while (queue.length) {
-            const current = queue.shift();
-            result.push(current.value);
-
-            if (current.leftNode) {
-                queue.push(current.leftNode);
-            }
-
-            if (current.rightNode) {
-                queue.push(current.rightNode);
-            }
-        }
-
-
-        return result;
-    }
+    return result;
+  }
 }
 
 class BinarySearchTree {
-    constructor() {
-        this.root = null;
-    };
+  constructor() {
+    this.root = null;
+  }
 
-    insert(value, data) {
-        if (!this.root) {
-            this.root = new Node(value, data);
-            return;
-        }
-
-        this.root.insert(value, data);
+  insert(value, data) {
+    if (!this.root) {
+      this.root = new Node(value, data);
+      return;
     }
 
-    getNode(value) {
-        if (!this.root) {
-            return;
-        }
+    this.root.insert(value, data);
+  }
 
-        return this.root.getNode(value);
+  getNode(value) {
+    if (!this.root) {
+      return;
     }
 
-    getRoot() {
-        return this.root;
+    return this.root.getNode(value);
+  }
+
+  getRoot() {
+    return this.root;
+  }
+
+  getHeight() {
+    if (!this.root) {
+      return 0;
     }
 
-    getHeight() {
-        if (!this.root) {
-            return 0;
-        }
+    return this.root.getHeight(this.root);
+  }
 
-        return this.root.getHeight(this.root);
-    }
+  getNodesInOrder() {
+    return this.root.getNodesInOrder([]);
+  }
 
-    getNodesInOrder() {
-        return this.root.getNodesInOrder([]);
-    }
+  getNodesInPreOrder() {
+    return this.root.getNodesInPreOrder([]);
+  }
 
-    getNodesInPreOrder() {
-        return this.root.getNodesInPreOrder([]);
-    }
+  getNodesInPostOrder() {
+    return this.root.getNodesInPostOrder([]);
+  }
 
-    getNodesInPostOrder() {
-        return this.root.getNodesInPostOrder([]);
-    }
-
-    getNodesInLevelOrderTraversal() {
-        return this.root.getNodesInLevelOrderTraversal();
-    }
+  getNodesInLevelOrderTraversal() {
+    return this.root.getNodesInLevelOrderTraversal();
+  }
 }
 
 module.exports.BinarySearchTree = BinarySearchTree;

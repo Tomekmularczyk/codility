@@ -1,6 +1,6 @@
 /*
-* Interquartile to jest różnica pomiędzy q3 - q1
-* */
+ * Interquartile to jest różnica pomiędzy q3 - q1
+ * */
 
 function getInterquartile(arr) {
   arr.sort((a, b) => a - b);
@@ -44,6 +44,5 @@ function mapElements(X, F) {
 
   return result;
 }
-
 
 module.exports.getInterquartile = getInterquartile;
