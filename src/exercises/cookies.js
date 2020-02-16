@@ -197,19 +197,27 @@ class MinHeap {
 }
 
 function main() {
-  const minHeap = new MinHeap();
-  minHeap.add(10);
-  minHeap.add(9);
-  console.log(minHeap.peek());
-  minHeap.add(3);
-  console.log(minHeap.peek());
-  minHeap.remove(9);
-  console.log(minHeap.peek());
-  minHeap.remove(3);
-  console.log(minHeap.peek());
-  minHeap.add(5);
-  minHeap.add(2);
-  console.log(minHeap.peek());
+  function cookies(k, A) {
+    const heap = new MinHeap();
+    A.forEach(v => heap.add(v));
+
+    let nrOfOperations = 0;
+    while (heap.heap.length > 1 && heap.peek() < k) {
+      const first = heap.poll();
+      const second = heap.poll();
+      const newCookie = 1 * first + 2 * second;
+      heap.add(newCookie);
+      nrOfOperations += 1;
+    }
+
+    if (heap.peek() < k) {
+      return -1;
+    }
+
+    return nrOfOperations;
+  }
+
+  console.log(cookies(10, [1, 1, 1]));
 }
 
 main();
