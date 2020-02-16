@@ -62,6 +62,10 @@ class MinHeap {
     return first;
   }
 
+  remove(value) {
+    this.removeAtIndex(this.heap.indexOf(value));
+  }
+
   removeAtIndex(index) {
     /**
     1, Delete a node from the array 
@@ -81,6 +85,11 @@ class MinHeap {
      */
 
     if (this.heap[index] === undefined) {
+      return;
+    }
+    if (this.heap.length - 1 === index) {
+      // last item
+      this.heap.pop();
       return;
     }
     this.heap[index] = this.heap.pop();
@@ -187,13 +196,19 @@ class MinHeap {
 }
 
 function main() {
-  const minHeap = new MinHeap([10, 15, 20, 17]);
-  // minHeap.add(10);
-  // minHeap.add(8);
-  // minHeap.add(9);
-  minHeap.removeAtIndex(1);
-  console.log(minHeap.validate());
-  console.log(minHeap.heap);
+  const minHeap = new MinHeap();
+  minHeap.add(10);
+  minHeap.add(9);
+  console.log(minHeap.peek());
+  minHeap.add(3);
+  console.log(minHeap.peek());
+  minHeap.remove(9);
+  console.log(minHeap.peek());
+  minHeap.remove(3);
+  console.log(minHeap.peek());
+  minHeap.add(5);
+  minHeap.add(2);
+  console.log(minHeap.peek());
 }
 
 main();

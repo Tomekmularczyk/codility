@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "lint": "eslint .",
+    "lint": "eslint src/",
     "start": "node run.js"
   },
   "author": "Tomasz Mularczyk",
