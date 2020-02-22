@@ -12,6 +12,10 @@ class MinHeap {
     this.array = [];
   }
 
+  peek() {
+    return this.array[0];
+  }
+
   add(data) {
     if (data === undefined) {
       throw "data must be valid to add";

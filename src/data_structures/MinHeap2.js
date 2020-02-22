@@ -196,20 +196,4 @@ class MinHeap {
   }
 }
 
-function main() {
-  const minHeap = new MinHeap();
-  minHeap.add(10);
-  minHeap.add(9);
-  console.log(minHeap.peek());
-  minHeap.add(3);
-  console.log(minHeap.peek());
-  minHeap.remove(9);
-  console.log(minHeap.peek());
-  minHeap.remove(3);
-  console.log(minHeap.peek());
-  minHeap.add(5);
-  minHeap.add(2);
-  console.log(minHeap.peek());
-}
-
-main();
+module.exports = MinHeap;
